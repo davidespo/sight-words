@@ -59,7 +59,7 @@ const WordClickList = ({ list }) => {
           <div className="d-flex justify-content-between">
             <div>
               <button
-                className="btn btn-sm btn-secondary"
+                className="btn btn-lg btn-secondary"
                 onClick={() => setIndex(index - 1)}
                 disabled={index <= 0}
               >
@@ -82,7 +82,7 @@ const CONTENT_MAP = {
 const WordList = () => {
   const { state, loading } = useLists();
   const { id } = useParams();
-  const [view, setView] = useState(VIEW_SUMMARY);
+  const [view, setView] = useState(VIEW_CLICK);
   const Content = CONTENT_MAP[view] ?? WordListSummary;
   if (loading) {
     return (
@@ -101,14 +101,14 @@ const WordList = () => {
   }
   return (
     <div className="p-3 mt-3">
-      <div>
+      <div className="mb-3 d-flex justify-content-end">
         <button
           className="btn btn-sm btn-primary"
           onClick={() =>
             setView(view === VIEW_SUMMARY ? VIEW_CLICK : VIEW_SUMMARY)
           }
         >
-          Switch View
+          Switch to {view === VIEW_SUMMARY ? "Quiz" : "Summary"} View
         </button>
       </div>
       <Content list={list} />

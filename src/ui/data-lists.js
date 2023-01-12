@@ -113,6 +113,11 @@ const listsAtom = atom({
       title: "Hank's List",
       words: [entry("the"), entry("golden"), entry("key")],
     },
+    {
+      id: "_hank3",
+      title: "Hank's List Again",
+      words: [entry("lost"), entry("treasure"), entry("key")],
+    },
   ],
   error: null,
 });
