@@ -1,6 +1,7 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 key.json
+server/
 
 # dependencies
 /node_modules
@@ -23,3 +24,7 @@ key.json
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# functions
+/functions/ui-debug.log
+/functions/keys.json

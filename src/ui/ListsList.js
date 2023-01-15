@@ -19,11 +19,7 @@ const ListCard = ({ list }) => {
 };
 
 const ListsList = () => {
-  const {
-    state: { loading, data },
-    refresh,
-    fetch,
-  } = useLists();
+  const { loading, data } = useLists();
   if (loading) {
     return (
       <div className="text-center text-muted h1">
@@ -33,11 +29,6 @@ const ListsList = () => {
   }
   return (
     <div>
-      <div className="py-5">
-        <button className="btn btn-success" onClick={() => refresh()}>
-          Refresh
-        </button>
-      </div>
       <div className="row pt-5">
         {data.map((list) => (
           <div className="col-lg-4 col-md-6 col-sm-12 mb-3" key={list.id}>

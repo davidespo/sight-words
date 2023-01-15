@@ -35,13 +35,20 @@ const WordClickList = ({ list }) => {
   const [index, setIndex] = useState(0);
   const { text } = list.words[index] ?? {};
   const length = list.words.length;
+  let Content;
   if (index >= length) {
-    return (
-      <div className="text-center">
-        <div className="text-muted h2">All Done :)</div>
-        <button className="btn btn-success" onClick={() => setIndex(0)}>
-          Reset
-        </button>
+    Content = (
+      <div className="card-text flex-grow-1 d-flex justify-content-center align-items-center">
+        <div className="display-1">🥳</div>
+      </div>
+    );
+  } else {
+    Content = (
+      <div
+        className="card-text flex-grow-1 d-flex justify-content-center align-items-center"
+        onClick={() => setIndex(index + 1)}
+      >
+        <div className="display-1">{text}</div>
       </div>
     );
   }
@@ -49,14 +56,9 @@ const WordClickList = ({ list }) => {
   return (
     <div className="card" style={{ minHeight: "60vh" }}>
       <div className="card-body d-flex flex-column">
-        <div
-          className="card-text flex-grow-1 d-flex justify-content-center align-items-center"
-          onClick={() => setIndex(index + 1)}
-        >
-          <div className="display-1">{text}</div>
-        </div>
+        {Content}
         <div className="card-text px-5">
-          <div className="d-flex justify-content-between">
+          <div className="d-flex">
             <div>
               <button
                 className="btn btn-lg btn-secondary"
@@ -65,6 +67,19 @@ const WordClickList = ({ list }) => {
               >
                 &lt;= Back
               </button>
+            </div>
+            <div
+              className="progress flex-grow-1 mt-1 mx-3"
+              role="progressbar"
+              aria-label="Basic example"
+              aria-valuenow={index}
+              aria-valuemin="0"
+              aria-valuemax={length - 1}
+            >
+              <div
+                className="progress-bar"
+                style={{ width: `${(index * 100) / length}%` }}
+              ></div>
             </div>
             <em className="text-muted">{`${index + 1} of ${length}`}</em>
           </div>
@@ -80,7 +95,7 @@ const CONTENT_MAP = {
 };
 
 const WordList = () => {
-  const { state, loading } = useLists();
+  const { data, loading } = useLists();
   const { id } = useParams();
   const [view, setView] = useState(VIEW_CLICK);
   const Content = CONTENT_MAP[view] ?? WordListSummary;
@@ -91,7 +106,7 @@ const WordList = () => {
       </div>
     );
   }
-  const list = state.data.find((item) => id === item.id);
+  const list = data.find((item) => id === item.id);
   if (!list) {
     return (
       <div className="mt-5 text-muted text-center h1">

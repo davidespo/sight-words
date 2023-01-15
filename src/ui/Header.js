@@ -9,15 +9,10 @@ const Header = () => {
         <NavLink className="navbar-brand" to="/">
           Sight Words
         </NavLink>
-        <div className="collapse navbar-collapse">
-          <div className="navbar-nav">
-            <Link className="nav-link" to="/lists">
-              Lists
-            </Link>
-            <Link className="nav-link" to="/settings">
-              Settings
-            </Link>
-          </div>
+        <div className="navbar-nav">
+          <Link className="nav-link" to="/settings">
+            Settings
+          </Link>
         </div>
       </div>
     </nav>
